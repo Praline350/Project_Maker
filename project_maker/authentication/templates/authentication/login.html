@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Connexion</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        {{ login_form.login_username.label_tag }}
+        {{ login_form.login_username }}
+        {% for error in login_form.login_username.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div>
+        {{ login_form.password.label_tag }}
+        {{ login_form.password }}
+        {% for error in login_form.password.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <button type="submit" name="login_form">Se connecter</button>
+</form>
+
+<h2>Inscription</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        {{ signup_form.email.label_tag }}
+        {{ signup_form.email }}
+        {% for error in signup_form.email.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div>
+        {{ signup_form.username.label_tag }}
+        {{ signup_form.username }}
+        {% for error in signup_form.username.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div>
+        {{ signup_form.password1.label_tag }}
+        {{ signup_form.password1 }}
+        {% for error in signup_form.password1.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div>
+        {{ signup_form.password2.label_tag }}
+        {{ signup_form.password2 }}
+        {% for error in signup_form.password2.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <button type="submit" name="signup_form">S'inscrire</button>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="message">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+{% endblock content %}
