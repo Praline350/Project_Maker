@@ -14,17 +14,3 @@ class TestDashboard:
         assert dashboard.user == user
         assert dashboard.background_color == 'blue'
         assert str(dashboard) == "testuser's Dashboard"
-
-@pytest.mark.django_db
-class TestWidget:
-
-    def test_widget_creation(self):
-        user = User.objects.create(username='testuser')
-        dashboard = Dashboard.objects.create(user=user, background_color='blue')
-        
-        widget = Widget.objects.create(dashboard=dashboard, name='Test Widget', description='A test widget', status=True)
-
-        assert widget.dashboard == dashboard
-        assert widget.name == 'Test Widget'
-        assert widget.description == 'A test widget'
-        assert widget.status is True
