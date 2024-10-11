@@ -1,3 +1,5 @@
 env/
 .env
 brouillon.py
+pyproject.toml
+__pycache__/
