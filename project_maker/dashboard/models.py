@@ -44,6 +44,9 @@ class Widget(models.Model):
     max_width = models.IntegerField(default=400)
 
     color = models.ForeignKey(Color, related_name="widget_background", on_delete=models.SET_NULL, null=True, blank=True)
+    text_color = models.ForeignKey(
+        Color, related_name="widget_text_color", on_delete=models.SET_NULL, null=True, blank=True
+    )
     border_color = models.ForeignKey(
         Color, related_name="widget_border_color", on_delete=models.SET_NULL, null=True, blank=True
     )

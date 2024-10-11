@@ -4,7 +4,9 @@ from .models import Profile, Color, Palette, UiSetting
 
 @admin.register(Profile)
 class AdminProfile(admin.ModelAdmin):
-    list_display = ["user", "text_color"]
+    list_display = [
+        "user",
+    ]
 
 
 @admin.register(Color)
@@ -19,4 +21,4 @@ class AdminPalette(admin.ModelAdmin):
 
 @admin.register(UiSetting)
 class AdminUiSetting(admin.ModelAdmin):
-    list_display = ["profile", "background_color"]
+    list_display = ["text_color", "background_color"]

@@ -33,9 +33,8 @@ class Palette(models.Model):
         return f"Palette {self.name}"
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-    avatar = models.ImageField(upload_to="avatar_profiles", blank=True, null=True)
+class UiSetting(models.Model):
+    background_color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True, blank=True)
     text_color = models.ForeignKey(
         Color, related_name="profile_text_color", on_delete=models.SET_NULL, null=True, blank=True
     )
@@ -44,13 +43,17 @@ class Profile(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user.username}'s Profile"
+        if self.profile:  # self.profile est une instance de Profile
+            return f"{self.profile.user.username}'s UI Settings"
+        return "UI Settings"
 
 
-class UiSetting(models.Model):
-    profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name="profile_uisetting")
-    background_color = models.ForeignKey(Color, on_delete=models.SET_NULL, null=True, blank=True)
-    palette = models.ForeignKey(Palette, on_delete=models.SET_NULL, null=True, blank=True)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    avatar = models.ImageField(upload_to="avatar_profiles", blank=True, null=True)
+    ui_settings = models.OneToOneField(
+        UiSetting, on_delete=models.SET_NULL, related_name="profile", null=True, blank=True
+    )
 
     def __str__(self):
-        return f"{self.profile.user.username}'s UI Settings"
+        return f"{self.user.username}'s Profile"
