@@ -10,8 +10,7 @@ class TestDashboard:
 
     def test_dashboard_creation(self):
         user = User.objects.create(username="testuser")
-        dashboard = Dashboard.objects.create(user=user, background_color="blue")
+        dashboard = Dashboard.objects.create(user=user)
 
         assert dashboard.user == user
-        assert dashboard.background_color == "blue"
         assert str(dashboard) == "testuser's Dashboard"

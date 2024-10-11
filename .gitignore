@@ -3,3 +3,4 @@ env/
 brouillon.py
 pyproject.toml
 __pycache__/
+.coverage
